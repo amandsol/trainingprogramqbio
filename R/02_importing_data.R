@@ -9,7 +9,7 @@
 cestes_files <- list.files(path = "data/raw/cestes",
                            pattern = "csv$",
                            full.names = TRUE)
-
+#replace the csv
 cestes_names <- gsub(".csv", "", basename(cestes_files), fixed = TRUE)
 
 envir <- read.csv(cestes_files[3])
@@ -32,6 +32,7 @@ envir_mean <- apply(envir[, -1], 2, mean)
 envir_sd <- apply(envir[, -1], 2, sd)
 
 # Creating a function in R -----------------------------------------------------
+#create a particular standard of a particular number
 std <- function(x, round = FALSE, ...) {
   std <- sd(x) / sqrt(length(x))
   if (round) std <- round(std, ...)
@@ -40,6 +41,7 @@ std <- function(x, round = FALSE, ...) {
 
 std(envir$Clay, round = TRUE, digits = 2)
 
+#pplying the function to all columns except the col 1
 envir_std <- apply(envir[, -1], 2, std, round = TRUE, digits = 2)
 
 envir_tbl <- data.frame(variable = names(envir_mean),
