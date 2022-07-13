@@ -177,6 +177,13 @@ write.csv(x = comm_total,
           row.names = FALSE)
 
 # Extra: filter ----------------------------------------------------------------
+#Elev is a variable
 sp1 <- filter(comm_total, TaxCode == "sp1", Elev > 3)
-
 View(sp1)
+
+sp1_2 <- comm_total[comm_total$TaxCode == "sp1" & comm_total$Elev >3,]
+
+select_test <- select(comm_total, TaxCode, Abundance, Sites)
+
+select_test2 <- comm_total[,c("TaxCode","Abundance","Sites")]
+
