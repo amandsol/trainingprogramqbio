@@ -6,3 +6,10 @@
 
 #Avoid adding html
 *.html
+
+#Zip files
+*.zip
+
+#Shapefiles e rasters
+data/shapefiles
+data/raster
