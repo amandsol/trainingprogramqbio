@@ -1,9 +1,13 @@
 # Scientific programming course ICTP-Serrapilheira July-2022
 # Class #01: Introduction to R
-# Introdutory script to play with R data types
+# Introductory script to play with R data types
 
 # See where you are working at
 getwd()
+
+#To use relative paths
+./ #current path
+../ #path before
 
 # Exploring R ------------------------------------------------------------------
 sqrt(10)
@@ -46,17 +50,22 @@ weight_g[weight_g > 35]
 
 ## ----recycling----------------------------------------------------------------
 more_animals <- c("rat", "cat", "dog", "duck", "goat")
+#Show the logical ones
 animals %in% more_animals
+#Give the characters
 animals[animals %in% more_animals]
 
 ## subset with grep ------------------------------------------------------------
 #animal that start with "d"
-more_animals[grepl("^d", more_animals)]
+more_animals[grepl("^d", more_animals)] #grepl function is used to find patterns
+#the same but with a different function, but use grepl
+grep("^d", more_animals, value = TRUE)
 
 ## ----recycling2---------------------------------------------------------------
 animals
 more_animals
 animals == more_animals
+#asymmetric difference, which animals are in animals and not in more_animals
 setdiff(animals, more_animals)
 ?setdiff
 
