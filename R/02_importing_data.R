@@ -14,6 +14,7 @@ cestes_names <- gsub(".csv", "", basename(cestes_files), fixed = TRUE)
 
 envir <- read.csv(cestes_files[3])
 
+#Create a list with all files (lapply)
 data_list <- lapply(cestes_files, read.csv)
 names(data_list) <- cestes_names
 
@@ -22,18 +23,20 @@ length(data_list)
 # Inspecting data
 head(data_list$envir)
 dim(data_list$envir)
-summary(envir$envir)
+summary(data_list$envir)
 
 # Output 1: summary table ------------------------------------------------------
 
 # Creating summary table for all environmental variables
 sd(envir$Clay)
-envir_mean <- apply(envir[, -1], 2, mean)
+#Mean of each column
+envir_mean <- apply(envir[, -1], 2, mean) #1 is for rows and 2 for columns
+#Standard deviation of each column
 envir_sd <- apply(envir[, -1], 2, sd)
 
 # Creating a function in R -----------------------------------------------------
-#create a particular standard of a particular number
-std <- function(x, round = FALSE, ...) {
+#create a particular standard error of a particular number
+std <- function(x, round = FALSE, ...) { #... is to use a function in a function
   std <- sd(x) / sqrt(length(x))
   if (round) std <- round(std, ...)
   return(std)
@@ -41,9 +44,10 @@ std <- function(x, round = FALSE, ...) {
 
 std(envir$Clay, round = TRUE, digits = 2)
 
-#pplying the function to all columns except the col 1
+#Applying the function to all columns except the col 1
 envir_std <- apply(envir[, -1], 2, std, round = TRUE, digits = 2)
 
+#Creating a data frame with the mean and std
 envir_tbl <- data.frame(variable = names(envir_mean),
                         mean = round(envir_mean, 2),
                         std = envir_std, row.names = NULL)
@@ -90,6 +94,7 @@ dev.off()
 # for loop in R ----------------------------------------------------------------
 comm_df <- as.data.frame(comm_sum)
 comm_df$TaxonName <- NA
+#Join the name of the species to the data.frame
 for (sp in rownames(comm_df)) {
   comm_df[sp, "TaxonName"] <- data_list$splist$TaxonName[data_list$splist$TaxCode == sp]
 }
