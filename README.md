@@ -10,6 +10,7 @@ project/
 *    │   ├── raw
 *    │   └── processed
      ├── docs/
+     ├── fct
 *    ├── figs/
      ├── R/
 *    ├── output/
