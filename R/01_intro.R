@@ -150,24 +150,26 @@ all(surveys == surveys_check)
 # inspecting
 str(surveys) #structure
 dim(surveys)
-nrow(surveys)
-ncol(surveys)
+nrow(surveys) #number of rows
+ncol(surveys) #number of columns
 
-head(surveys)
-tail(surveys)
+head(surveys) #First six rows of the data.frame
+tail(surveys) #Last six rows of the data.frame
 
-names(surveys)
-rownames(surveys)
+names(surveys) #Name of the columns
+rownames(surveys) #Name of the rows
 length(surveys)
 
-sub <- surveys[1:10, ]
+#Select the first ten rows
+sub <- surveys[1:10,]
+#Iteration
 sub[1, 1]
 sub[1, 6]
 sub[["record_id"]]
 sub$record_id
 
 sub[1:3, 7]
-
+#Select the third line of sub
 sub[3, ]
 
 # [row, columns]
@@ -200,6 +202,7 @@ sub$hindfoot_length
 
 sub$hindfoot_length == NA
 
+#Check the NAs
 is.na(sub$hindfoot_length)
 !is.na(sub$hindfoot_length)
 
