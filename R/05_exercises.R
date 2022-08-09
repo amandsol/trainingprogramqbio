@@ -1,7 +1,12 @@
+# --------------------------------------------------#
+# Scientific computing
+# ICTP/Serrapilheira 2022
+## Monday Exercises
+# --------------------------------------------------#
+
+
 data("iris")
 iris
-
-
 
 oi<- filter(iris, Species == "setosa" | Species == "virginica")
 
@@ -20,4 +25,3 @@ ggplot(iris) +
 ggplot(iris)+
   geom_point(mapping = aes(x=Sepal.Length, y= Sepal.Width))+
   facet_wrap(~Species)
-

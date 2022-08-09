@@ -3,6 +3,7 @@
 # original data from Jeliazkov et al 2020 Sci Data
 # (https://doi.org/10.1038/s41597-019-0344-7)
 # first version 2022-07-12
+## Class #04: Data manipulation in R
 #-----------------------------------------------------------#
 
 # loading needed packages
@@ -28,7 +29,7 @@ file_names <- gsub(".csv", "", basename(files_path), fixed = TRUE)
 #assing to a name
 for (i in 1:length(files_path)) {
   data <- read.csv(files_path[[i]])
-  assign(file_names[i], data)
+  assign(file_names[i], data) #assingn an object to a name
 }
 
 
@@ -130,7 +131,7 @@ n_sp
 #:: you select a function in the package you want
 #tidyr::pivot_longer pegando algo grande e tornando longo (matrix)
 comm_df <- tidyr::pivot_longer(comm,
-                               cols = 2:ncol(comm),
+                               cols = 2:ncol(comm), #which cols will become rows
                                names_to = "TaxCode",
                                values_to = "Abundance")
 

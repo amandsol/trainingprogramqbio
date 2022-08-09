@@ -4,6 +4,7 @@
 # Script to perform exploratory data analysis
 # For more explanations follow the tutorial at:
 # First version 2022-07-13
+## Class #05: Exploratory data analysis
 # --------------------------------------------------#
 
 # Loading the data
@@ -27,7 +28,10 @@ aggregate(Sepal.Length ~ Species, data = iris, mean)
 
 
 ## NAs and zeroes --------------------------------------------------------------
-apply(iris, 2, function(x) sum(is.na(x)))
+#are there NAs in the data?
+apply(iris, 2, function(x) sum(is.na(x))) #defining a function inside apply function
+#to check if there are zeros
+summary(iris)
 
 ## Descriptive statistics ------------------------------------------------------
 vars <- iris[, -5]
@@ -87,7 +91,7 @@ par(mfrow = c(2, 2))
 hist(iris$Sepal.Length)
 hist(iris$Sepal.Width)
 hist(iris$Petal.Length)
-hist(iris$Petal.Length)
+hist(iris$Petal.Width)
 par(mfrow = c(1, 1))
 
 par(mfrow = c(1, 2))
@@ -160,6 +164,10 @@ qqline(iris$Sepal.Length[iris$Species == "virginica"])
 par(mfrow = c(1, 1))
 
 # Relationship between variables -----------------------------------------------
+#The result is a matrix with variables in rows and columns. The graph we see is
+#the scatterplot for each pair of variables. The diagonal of the matrix contains
+#the variable names. Note that the graph is mirrored so that the relationship
+#between sepal size and length appears both in row 1 and col 2 and in row 2 and col1
 pairs(vars)
 
 
