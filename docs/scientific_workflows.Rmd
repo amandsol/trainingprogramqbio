@@ -9,6 +9,8 @@ output:
     df_print: paged
 abstract: |
   it will be worth reading the report
+bibliography: AED.bib
+csl: journal-of-ecology.csl
 ---
 
 ```{r setup, include=FALSE}
@@ -60,3 +62,11 @@ knitr::include_graphics("../figs/02_species_abundance.png")
 ## Discussion
 
 It is time to synthesize your results and relate your findings with theory. 
+
+# Citing!!
+
+I will cite @zuur_protocol_2010 here
+
+## References
+
+<div id="refs"></div>
