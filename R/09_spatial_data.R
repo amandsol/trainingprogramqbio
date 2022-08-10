@@ -1,9 +1,22 @@
+# --------------------------------------------------#
+# Scientific computing
+# ICTP/Serrapilheira 2022
+# First version 2022-07-26
+# Class 10: Spatial data
+# --------------------------------------------------#
+#install.packages("rnaturalearth")
+#install.packages("remotes")
+#remotes::install_github("ropensci/rnaturalearthhires")
+library(rnaturalearth)
+library(rnaturalearthhires)
 library(sf)
 library(ggplot2)
 library(tmap)
 library(dplyr)
+library(raster)
 
 data(World)
+World
 # package tmap has a syntax similar to ggplot. The functions start all with tm_
 tm_shape(World) +
   tm_borders()
@@ -28,7 +41,7 @@ head(World[, 1:4])
 class(World)
 class(World$geometry)
 
-#extracting and assigning geometries to existant data frames and the possibility
+#extracting and assigning geometries to existent data frames and the possibility
 #to drop the geometries
 head(sf::st_coordinates(World))
 
@@ -47,7 +60,7 @@ World %>%
   tm_borders()
 
 World %>%
-  mutate(our_countries = if_else(iso_a3 %in% c("COL","BRA", "MEX"), "red", "grey")) %>%
+  mutate(our_countries = if_else(iso_a3 %in% c("COL","BRA", "MEX","ARG"), "red", "grey")) %>%
   tm_shape() +
   tm_borders() +
   tm_fill(col = "our_countries") +
@@ -57,16 +70,12 @@ World %>%
 
 
 ###Loading, ploting, and saving a shapefile from the disk
-#install.packages("rnaturalearth")
-#install.packages("remotes")
-#remotes::install_github("ropensci/rnaturalearthhires")
-library(rnaturalearth)
-library(rnaturalearthhires)
 bra <- ne_states(country = "brazil", returnclass = "sf")
 plot(bra)
 
 dir.create("data/shapefiles", recursive = TRUE)
-st_write(obj = bra, dsn = "data/shapefiles/bra.shp", delete_layer = TRUE)
+st_write(obj = bra, dsn = "data/shapefiles/bra.shp",
+         delete_dsn = TRUE) #protect of overwriting
 
 #Check the files that are created: .shp, .shx, .dbf, .cpg, prj.
 #To read again this shapefile, you would execute:
@@ -77,7 +86,6 @@ plot(bra)
 plot(bra2)
 
 ###Loading, ploting, and saving a raster from the disk
-library(raster)
 dir.create(path = "data/raster/", recursive = TRUE)
 tmax_data <- getData(name = "worldclim", var = "tmax", res = 10, path = "data/raster/")
 plot(tmax_data)
