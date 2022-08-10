@@ -1,3 +1,10 @@
+# --------------------------------------------------#
+# Scientific computing
+# ICTP/Serrapilheira 2022
+# First version 2022-07-21
+# Class 09: Manipulate dates in R using the package lubridate
+# --------------------------------------------------#
+
 ###Time-series
 library(dplyr)
 library(ggplot2)

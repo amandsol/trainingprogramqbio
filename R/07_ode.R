@@ -1,3 +1,10 @@
+# --------------------------------------------------#
+# Scientific computing
+# ICTP/Serrapilheira 2022
+# First version 2022-07-21
+# Class 09: Creating functions with deSolve package
+# --------------------------------------------------#
+
 ###Population ecology
 library(deSolve)
 library(ggplot2) # because we will plot things
