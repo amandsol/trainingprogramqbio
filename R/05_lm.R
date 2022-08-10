@@ -3,6 +3,7 @@
 # ICTP/Serrapilheira 2022
 # Script to fit linear model in R
 # First version 2022-07-18
+## Class #07: Statistical modelling
 # --------------------------------------------------#
 
 # loading packages
@@ -33,15 +34,16 @@ abline(mod_cat, col = "red", lwd = 2)
 ## ----lm-ggplot----------------------------------------------------------------
 ggplot(data = cat, mapping = aes(x = tannin, y = growth)) +
   geom_point() +
-  geom_smooth(method = lm) + #add the curve
+  geom_smooth(method = lm) + #add the curve #se = FALSE don't plot the curve
   theme_classic()
 
 
 ## AOV table
+#ANOVA --- shows the sum and residuals
 summary.aov(mod_cat)
 
 
-## fitted values
+## fitted values (predict values)
 predict(mod_cat)
 #create a column
 cat$fitted <- predict(mod_cat)
@@ -56,7 +58,8 @@ ggplot(data = cat) +
 ## Model diagnostics -----------------------------------------------------------
 par(mfrow = c(2, 2))
 plot(mod_cat) #Four plots to inspect the residuals
-#1 the red line should be horizontal (numbers indicate the position)
+#1 the red line should be horizontal (numbers indicate the position) / Check the
+#homogeneity of variances
 #2 Quantiles
 #3 red line should be horizontal
 #4 values above 3
