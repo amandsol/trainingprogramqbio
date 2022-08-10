@@ -3,6 +3,7 @@
 # ICTP/Serrapilheira 2022
 # Inplementing glm and glmm in R
 # First version 2022-07-20
+# Class 08: General linear models
 # --------------------------------------------------#
 
 # Loading needed packages
